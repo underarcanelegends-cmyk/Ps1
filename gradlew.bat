@@ -1,1 +1,1 @@
-@echo off
+gradlew.bat placeholder

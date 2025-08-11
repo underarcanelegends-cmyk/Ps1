@@ -1,22 +1,21 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-
+plugins {
+  id 'com.android.application' version '8.5.2'
+  id 'org.jetbrains.kotlin.android' version '1.9.24'
+}
 android {
-  namespace 'com.example.ps1emu'
+  namespace 'com.example.ps1easy'
   compileSdk 34
   defaultConfig {
-    applicationId 'com.example.ps1emu'
+    applicationId 'com.example.ps1easy'
     minSdk 24
     targetSdk 34
-    versionCode 7
-    versionName '0.7.0'
+    versionCode 1
+    versionName '0.1.0'
   }
-  buildTypes { release { minifyEnabled false } debug { } }
-  buildFeatures { buildConfig true }
+  buildTypes { release { minifyEnabled false } debug {} }
 }
-
 dependencies {
-  implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.9.24'
   implementation 'androidx.core:core-ktx:1.13.1'
   implementation 'androidx.appcompat:appcompat:1.7.0'
+  implementation 'com.google.android.material:material:1.12.0'
 }
