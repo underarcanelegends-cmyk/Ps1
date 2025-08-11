@@ -2,6 +2,7 @@ plugins {
   id 'com.android.application' version '8.5.2'
   id 'org.jetbrains.kotlin.android' version '1.9.24'
 }
+
 android {
   namespace 'com.example.ps1easy'
   compileSdk 34
@@ -12,8 +13,12 @@ android {
     versionCode 1
     versionName '0.1.0'
   }
-  buildTypes { release { minifyEnabled false } debug {} }
+  buildTypes {
+    release { minifyEnabled false }
+    debug { }
+  }
 }
+
 dependencies {
   implementation 'androidx.core:core-ktx:1.13.1'
   implementation 'androidx.appcompat:appcompat:1.7.0'
