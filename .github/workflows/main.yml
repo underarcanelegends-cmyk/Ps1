@@ -17,17 +17,22 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      # (opsiyonel) SDK otomatik kurulum — çoğu projede gerekmez, ama dursun:
-      - name: Accept licenses
-        run: yes | sudo /usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager --licenses || true
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
 
-      - name: Make gradlew executable
-        run: chmod +x ./gradlew
+      - name: Install SDK components
+        run: |
+          yes | sdkmanager --licenses
+          sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0"
 
-      - name: Build Debug APK
-        run: ./gradlew assembleDebug --no-daemon
+      # gradlew yerine direkt Gradle 8.7 kullan
+      - name: Build with Gradle 8.7
+        uses: gradle/gradle-build-action@v3
+        with:
+          gradle-version: 8.7
+          arguments: assembleDebug
 
-      - name: Upload APK artifact
+      - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: app-debug.apk
